@@ -297,7 +297,7 @@ export function WeChatSkin(p: SkinProps) {
               className="wx-moment-post"
               onClick={() => p.onItem(i)}
             >
-              <Avatar name={i.sender} />
+              <Avatar name={i.sender} src={i.avatar} />
               <div>
                 <strong>{i.sender}</strong>
                 <p>{i.body}</p>
