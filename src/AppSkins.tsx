@@ -176,6 +176,7 @@ export function WeChatSkin(p: SkinProps) {
   const posts = p.items.filter(
     (i) => i.folder === "朋友圈" || i.kind === "post",
   );
+  const meItem = p.items.find((i) => i.id === "wechat-me-profile");
   return (
     <div
       className="wechat-ui independent-skin"
@@ -419,10 +420,10 @@ export function WeChatSkin(p: SkinProps) {
           ) : (
             <>
               <div className="wx-profile">
-                <Avatar name={p.owner || "机主"} />
+                <Avatar name={p.owner || "机主"} src={meItem?.avatar} />
                 <div>
                   <h2>{p.owner || "机主"}</h2>
-                  <small>微信号：未设置</small>
+                  <small>{meItem?.body || "微信号：未设置"}</small>
                   <button
                     className="wx-profile-status"
                     onClick={() => setUtility("状态")}
@@ -460,7 +461,7 @@ export function WeChatSkin(p: SkinProps) {
                 })}
               </div>
               {p.items
-                .filter((i) => i.folder === "我")
+                .filter((i) => i.folder === "我" && i.id !== "wechat-me-profile")
                 .map((i) => (
                   <button
                     className="wx-discovery"
